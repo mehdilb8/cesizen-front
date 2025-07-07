@@ -1,0 +1,376 @@
+/* CSS Mobile-First pour CESIZen - Application de santé mentale */
+
+/* Variables CSS pour la cohérence des couleurs */
+:root {
+  --primary-color: #4a90a4; /* Bleu-vert apaisant */
+  --secondary-color: #7fb3d3; /* Bleu clair */
+  --accent-color: #f4a261; /* Orange doux */
+  --text-primary: #2c3e50; /* Gris-bleu foncé */
+  --text-secondary: #6c757d; /* Gris moyen */
+  --background-light: #f8f9fa; /* Blanc cassé */
+  --background-white: #ffffff;
+  --success-color: #52c41a; /* Vert doux */
+  --border-color: #e0e6ed;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* Reset et base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* MOBILE FIRST - Styles de base (320px+) */
+.main-header {
+  background: linear-gradient(135deg, var(--background-white) 0%, var(--background-light) 100%);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px var(--shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Logo */
+.logo {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.logo span {
+  font-size: 1.8rem;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Bouton menu hamburger (mobile seulement) */
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  align-self: flex-end;
+  order: 1;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: 5px 0;
+  transition: var(--transition);
+  border-radius: 3px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Navigation mobile */
+nav {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--background-white);
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+  padding: 1rem;
+  z-index: 999;
+}
+
+nav.active {
+  display: flex;
+  animation: slideDown 0.3s ease-out;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  text-align: center;
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+}
+
+nav a:hover,
+nav a:focus {
+  background: var(--primary-color);
+  color: var(--background-white);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+nav a:active {
+  transform: translateY(0);
+}
+
+/* Informations utilisateur */
+.user-info {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 1rem;
+  background: var(--background-light);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.user-info.active {
+  display: flex;
+}
+
+.user-info span {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.user-info button {
+  background: linear-gradient(135deg, var(--accent-color), #e76f51);
+  color: var(--background-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.user-info button:hover {
+  background: linear-gradient(135deg, #e76f51, var(--accent-color));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.user-info button:active {
+  transform: translateY(0);
+}
+
+/* Liens de connexion/inscription */
+.user-info a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.user-info a:first-child {
+  background: var(--primary-color);
+  color: var(--background-white);
+}
+
+.user-info a:first-child:hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.user-info a:last-child:hover {
+  background: var(--primary-color);
+  color: var(--background-white);
+}
+
+/* TABLET - Styles pour tablettes (768px+) */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    font-size: 1.7rem;
+  }
+
+  nav {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1rem;
+    width: auto;
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  nav a {
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    border: 1px solid transparent;
+    text-align: left;
+  }
+
+  nav a:hover,
+  nav a:focus {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .user-info {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    width: auto;
+    margin-top: 0;
+  }
+
+  .user-info button,
+  .user-info a {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+/* DESKTOP - Styles pour ordinateurs (1024px+) */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 3rem;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  nav {
+    gap: 1.5rem;
+  }
+
+  nav a {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .user-info {
+    gap: 1.5rem;
+  }
+
+  .user-info span {
+    font-size: 1rem;
+  }
+}
+
+/* LARGE DESKTOP - Styles pour grands écrans (1440px+) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  nav a {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Animations et microinteractions pour le bien-être */
+@media (prefers-reduced-motion: no-preference) {
+  .main-header {
+    animation: slideDown 0.5s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* Focus visible pour l'accessibilité */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* États actifs pour une meilleure UX */
+nav a.active {
+  background: var(--primary-color);
+  color: var(--background-white);
+  border-color: var(--primary-color);
+}
+
+/* Styles pour les préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

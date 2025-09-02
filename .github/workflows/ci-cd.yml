@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
   push:
@@ -92,36 +92,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # Job de déploiement staging
-  deploy-staging:
-    name: Deploy to Staging
-    runs-on: ubuntu-latest
-    needs: docker-build
-    if: github.ref == 'refs/heads/develop'
-    environment: staging
-    
-    steps:
-      - name: Deploy to staging environment
-        run: |
-          echo "Deploying to staging environment..."
-          # Ajoutez ici vos commandes de déploiement staging
-          # Par exemple: docker-compose, kubectl, etc.
-
-  # Job de déploiement production
-  deploy-production:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    needs: docker-build
-    if: github.ref == 'refs/heads/main'
-    environment: production
-    
-    steps:
-      - name: Deploy to production environment
-        run: |
-          echo "Deploying to production environment..."
-          # Ajoutez ici vos commandes de déploiement production
-          # Par exemple: docker-compose, kubectl, etc.
-
   # Job de sécurité
   security-scan:
     name: Security Scan
@@ -158,11 +128,11 @@ jobs:
       - name: Notify on success
         if: success()
         run: |
-          echo "✅ CI/CD Pipeline completed successfully!"
+          echo "✅ CI Pipeline completed successfully!"
           # Ajoutez ici vos notifications (Slack, Teams, etc.)
           
       - name: Notify on failure
         if: failure()
         run: |
-          echo "❌ CI/CD Pipeline failed!"
+          echo "❌ CI Pipeline failed!"
           # Ajoutez ici vos notifications d'erreur

@@ -7,10 +7,9 @@ Ce dossier contient les workflows GitHub Actions pour automatiser la CI/CD de vo
 ```
 .github/
 ├── workflows/
-│   ├── ci-cd.yml          # Pipeline principal CI/CD
-│   ├── pr-check.yml       # Vérifications des Pull Requests
-│   └── deploy.yml         # Déploiement automatique
-└── README.md              # Ce fichier
+│   ├── ci-cd.yml          
+│  
+└── README.md              
 ```
 
 ## 🔄 Workflows disponibles
@@ -23,22 +22,6 @@ Ce dossier contient les workflows GitHub Actions pour automatiser la CI/CD de vo
 - 🚀 Déploiement automatique (staging/production)
 - 🔒 Scan de sécurité avec Trivy
 - 📢 Notifications d'équipe
-
-### 2. **Pull Request Check** (`pr-check.yml`)
-**Déclencheur :** Pull Requests sur `main`/`develop`
-**Fonctionnalités :**
-- 🔍 Vérifications de base (format, lint, tests)
-- 🐳 Test du build Docker
-- 🛡️ Audit de sécurité npm
-- 📊 Analyse de la taille du bundle
-
-### 3. **Deploy Application** (`deploy.yml`)
-**Déclencheur :** Push sur `main`, déclenchement manuel
-**Fonctionnalités :**
-- 🚀 Déploiement automatique
-- 🔧 Choix de l'environnement (staging/production)
-- ✅ Health check post-déploiement
-- 📢 Notifications de statut
 
 ## 🎯 Utilisation
 

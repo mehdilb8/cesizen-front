@@ -1,4 +1,4 @@
-name: Simple Build Pipeline
+name: Build and Deploy to Vercel
 
 on:
   push:
@@ -40,7 +40,6 @@ jobs:
           echo "✅ Build completed successfully!"
           echo "React app built and artifacts uploaded"
 
-  # Job de déploiement Vercel
   deploy:
     name: Deploy to Vercel
     runs-on: ubuntu-latest
@@ -59,6 +58,25 @@ jobs:
           
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
+        
+      - name: Debug secrets
+        run: |
+          echo "Checking if secrets are available..."
+          if [ -n "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "✅ VERCEL_TOKEN is set"
+          else
+            echo "❌ VERCEL_TOKEN is NOT set"
+          fi
+          if [ -n "${{ secrets.VERCEL_ORG_ID }}" ]; then
+            echo "✅ VERCEL_ORG_ID is set"
+          else
+            echo "❌ VERCEL_ORG_ID is NOT set"
+          fi
+          if [ -n "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "✅ VERCEL_PROJECT_ID is set"
+          else
+            echo "❌ VERCEL_PROJECT_ID is NOT set"
+          fi
         
       - name: Deploy to Vercel
         run: |

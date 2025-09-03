@@ -1,4 +1,4 @@
-name: Simple CI/CD Pipeline
+name: Simple Build Pipeline
 
 on:
   push:
@@ -7,13 +7,9 @@ on:
     branches: [ main, develop ]
   workflow_dispatch:
 
-env:
-  NODE_VERSION: '18'
-
 jobs:
-  # Job principal : Build et Test
-  build-and-test:
-    name: Build and Test
+  build:
+    name: Build React App
     runs-on: ubuntu-latest
     
     steps:
@@ -23,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: '18'
           cache: 'npm'
           
       - name: Install dependencies
@@ -38,53 +34,8 @@ jobs:
           name: build-files
           path: build/
           retention-days: 7
-
-  # Job de déploiement Vercel (optionnel)
-  deploy-vercel:
-    name: Deploy to Vercel
-    runs-on: ubuntu-latest
-    needs: build-and-test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
           
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-        
-      - name: Deploy to Vercel
+      - name: Success message
         run: |
-          vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-  # Job de notification
-  notify:
-    name: Notify Team
-    runs-on: ubuntu-latest
-    needs: [build-and-test, deploy-vercel]
-    if: always()
-    
-    steps:
-      - name: Notify on success
-        if: success()
-        run: |
-          echo "✅ CI/CD Pipeline completed successfully!"
-          echo "Build completed and artifacts uploaded"
-          # Ajoutez ici vos notifications (Slack, Teams, etc.)
-          
-      - name: Notify on failure
-        if: failure()
-        run: |
-          echo "❌ CI/CD Pipeline failed!"
-          echo "Check the logs for details"
-          # Ajoutez ici vos notifications d'erreur
+          echo "✅ Build completed successfully!"
+          echo "React app built and artifacts uploaded"

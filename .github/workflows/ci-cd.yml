@@ -39,3 +39,36 @@ jobs:
         run: |
           echo "✅ Build completed successfully!"
           echo "React app built and artifacts uploaded"
+
+  # Job de déploiement Vercel
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+        
+      - name: Deploy to Vercel
+        run: |
+          vercel --prod --token ${{ secrets.CR0e2Yor2ff1NRb6p7ohQcK3 }} --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.CR0e2Yor2ff1NRb6p7ohQcK3 }}
+          VERCEL_ORG_ID: ${{ secrets.prj_3ZigRMD9UaUberMlJLqJSA9pTJGs }}
+          VERCEL_PROJECT_ID: ${{ secrets.mehdis-projects-908804ad }}
+          
+      - name: Deploy success message
+        run: |
+          echo "🚀 Deployed to Vercel successfully!"
+          echo "Your app is now live!"

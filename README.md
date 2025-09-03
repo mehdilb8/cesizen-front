@@ -24,4 +24,4 @@ Application React pour la gestion des exercices de respiration et du bien-être.
 - GitHub Actions CI/CD
 
 ---
-*Test du workflow CI/CD - $(date)*
+*Test du workflow CI/CD avec déploiement Vercel automatique - $(date)*

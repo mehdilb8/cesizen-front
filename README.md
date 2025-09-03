@@ -25,3 +25,4 @@ Application React pour la gestion des exercices de respiration et du bien-être.
 
 ---
 *Test du workflow CI/CD avec déploiement Vercel automatique - $(date)*
+*Secrets Vercel corrigés - Test de déploiement*

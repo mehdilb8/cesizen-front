@@ -1,28 +1,47 @@
-# CESIZen Frontend
+# Cesizen Frontend
 
-Application React pour la gestion des exercices de respiration et du bien-être.
+Application React pour la gestion des exercices de respiration et de méditation.
 
 ## 🚀 Déploiement
 
-- **Vercel** : Configuration automatique
-- **Docker** : Support conteneurisé
-- **CI/CD** : Pipeline GitHub Actions
+- **GitHub Pages** : Déploiement automatique via GitHub Actions
+- **Vercel** : Déploiement automatique via GitHub Actions
 
 ## 📋 Fonctionnalités
 
 - Authentification utilisateur
 - Gestion des exercices de respiration
-- Interface d'administration
-- Système de blog
-- Enregistrement des sessions
+- Panel d'administration
+- Blog et articles
+- Interface responsive
 
-## 🔧 Technologies
+## 🛠️ Technologies
 
-- React 19.1.0
+- React.js
 - React Router DOM
-- CSS personnalisé
-- GitHub Actions CI/CD
+- Context API
+- CSS3
+
+## 🔧 Installation
+
+```bash
+npm install
+npm start
+```
+
+## 🧪 Tests
+
+```bash
+npm test
+```
+
+## 🏗️ Build
+
+```bash
+npm run build
+```
 
 ---
 *Test du workflow CI/CD avec déploiement Vercel automatique - $(date)*
 *Secrets Vercel corrigés - Test de déploiement*
+*Test du workflow GitHub Pages - Alternative à Vercel*

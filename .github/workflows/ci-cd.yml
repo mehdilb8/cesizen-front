@@ -62,11 +62,11 @@ jobs:
         
       - name: Deploy to Vercel
         run: |
-          vercel --prod --token ${{ secrets.CR0e2Yor2ff1NRb6p7ohQcK3 }} --yes
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
         env:
-          VERCEL_TOKEN: ${{ secrets.CR0e2Yor2ff1NRb6p7ohQcK3 }}
-          VERCEL_ORG_ID: ${{ secrets.prj_3ZigRMD9UaUberMlJLqJSA9pTJGs }}
-          VERCEL_PROJECT_ID: ${{ secrets.mehdis-projects-908804ad }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           
       - name: Deploy success message
         run: |

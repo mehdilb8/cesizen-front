@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { startSession, endSession, getUserSessions } from '../../services/sessionService';
+import React, { useState, useRef } from 'react';
+import { startSession, endSession } from '../../services/sessionService';
 
 const steps = [
   { key: 'inspiration', label: 'Inspiration', color: '#4CAF50' },
@@ -15,9 +15,6 @@ const ExercicePlayer = ({ exercice }) => {
   const timerRef = useRef(null);
   const [sessionId, setSessionId] = useState(null);
   const [ressentiAvant] = useState(5); // valeur par défaut pour le ressenti avant
-  const [ressentiApres, setRessentiApres] = useState(5);
-  const [commentaire, setCommentaire] = useState('');
-  const [sessions, setSessions] = useState([]);
 
   const durations = [
     exercice.duree_inspiration,
@@ -27,9 +24,7 @@ const ExercicePlayer = ({ exercice }) => {
 
   const totalCycles = exercice.nb_cycles_recommandes || 10;
 
-  useEffect(() => {
-    getUserSessions().then(setSessions);
-  }, []);
+
 
   const handleStart = async () => {
     try {
@@ -99,8 +94,8 @@ const ExercicePlayer = ({ exercice }) => {
     try {
       if (sessionId) {
         await endSession(sessionId, {
-          ressentiApres: ressentiApres,
-          commentaire: commentaire
+          ressentiApres: 5, // valeur par défaut
+          commentaire: '' // commentaire vide
         });
         console.log('Session terminée avec succès');
       }

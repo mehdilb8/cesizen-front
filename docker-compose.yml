@@ -1,0 +1,17 @@
+services:
+  frontend:
+    build: .
+    container_name: cesizen_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./public/images:/usr/share/nginx/html/images
+    networks:
+      - cesizen_network
+
+networks:
+  cesizen_network:
+    driver: bridge
